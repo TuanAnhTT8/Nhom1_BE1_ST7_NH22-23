@@ -68,11 +68,33 @@ class Product extends Db
 
     public function getProductById($id)
     {
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `id` = ?");
+        $sql = self::$connection->prepare("SELECT `id`, `products`.`manu_id`, `products`.`type_id`, `name`, `manu_name`, `type_name`, `price`, `image`, `description`, `feature`, `created_at` FROM `products`,`manufacture`,`protypes` WHERE `id`= ? AND `manufacture`.`manu_id` = `products`.`manu_id` AND `protypes`.`type_id` = `products`.`type_id`");
         $sql->bind_param("i", $id);
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
+
+    public function get5ProductByType($id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = ? LIMIT 5");
+        $sql->bind_param("i", $id);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+
+    public function get5ProductByManu($id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `manu_id` = ? LIMIT 5");
+        $sql->bind_param("i", $id);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+
+    
 }
