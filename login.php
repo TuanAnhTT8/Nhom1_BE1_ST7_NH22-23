@@ -40,7 +40,7 @@
 
 				</div>
 				<div class="card-body">
-					<form action="check-login.php" method="POST" novalidate>
+					<form action="check-login.php" method="POST">
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -59,7 +59,7 @@
 							<div class="invalid-feedback">Password is Invalid</div>
 						</div>
 						<div class="form-group">
-							<input type="submit" name="btn_submit" value="Login" class="btn float-right login_btn">
+							<button type="submit" name="btn_submit">Login</button>
 						</div>
 					</form>
 				</div>
