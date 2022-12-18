@@ -21,7 +21,7 @@ if(isset($_POST['name'])){
     $product->addProduct($name,$manu_id,$type_id,$price,$image,$des,$feature);
 
     
-    //xu ly hinh anh
+    //xu ly upload
     $target_dir = "../img/";
     $target_file = $target_dir . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
