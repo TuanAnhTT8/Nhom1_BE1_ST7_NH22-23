@@ -5,25 +5,21 @@ require "model/product.php";
 require "model/manufacture.php";
 require "model/protype.php";
 require "model/cart.php";
-// require "model/user.php";
+require "model/user.php";
 // require "model/order.php";
 
 $product = new Product;
 $manu = new Manufacture;
 $protype = new Protype;
 $cart = new Cart;
-// $user = new User;
+$user = new User;
 
 $get5NewestProduct = $product->get5NewestProducts();
 $getAllProducts = $product->getAllProducts();
 $getAllManu = $manu->getAllManufactures();
 $getAllProtype = $protype->getAllProtype();
 
-if (isset($_GET['type'])) {
-	$type = $_GET['type'];
-} else {
-	$type = 0;
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,8 +50,8 @@ if (isset($_GET['type'])) {
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/Cartview.css">
-	<link rel="stylesheet" href="css/loading.css">
+	<!-- <link rel="stylesheet" href="css/Cartview.css">
+	<link rel="stylesheet" href="css/loading.css"> -->
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
