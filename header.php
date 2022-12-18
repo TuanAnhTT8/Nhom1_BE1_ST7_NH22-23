@@ -95,15 +95,6 @@ if (isset($_GET['type'])) {
 				<!-- /LOGIN -->
 
 
-    </head>
-	<body>
-		<!-- HEADER -->
-		<header>
-			<!-- TOP HEADER -->
-			
-		</div>
-		<!-- /TOP HEADER -->
-
 				</head>
 
 				<body>
@@ -114,104 +105,118 @@ if (isset($_GET['type'])) {
 			</div>
 			<!-- /TOP HEADER -->
 
+			</head>
 
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="index.php" class="logo">
-									<img src="./img/logo.png" alt="">
-								</a>
-							</div>
+			<body>
+				<!-- HEADER -->
+				<header>
+					<!-- TOP HEADER -->
+
+		</div>
+		<!-- /TOP HEADER -->
+
+
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="index.php" class="logo">
+								<img src="./img/logo.png" alt="">
+							</a>
 						</div>
-						<!-- /LOGO -->
+					</div>
+					<!-- /LOGO -->
 
-						<!-- SEARCH BAR -->
-						<div class="col-md-6">
-							<div class="header-search">
-								<form method="get" action="result.php">
-									<input class="input-select" placeholder="Search here" pattern="^[a-zA-Z0-9]+$" name="keyword" value="<?php if (isset($_GET['keyword']))
-																																				echo $_GET['keyword'] ?>">
-									<!-- <input type="hidden" value="default" name="sort"> -->
-									<button type="submit" class="search-btn">Search</button>
-								</form>
-							</div>
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form method="get" action="result.php">
+								<input class="input-select" placeholder="Search here" pattern="^[a-zA-Z0-9]+$" name="keyword" value="<?php if (isset($_GET['keyword']))
+																																			echo $_GET['keyword'] ?>">
+								<!-- <input type="hidden" value="default" name="sort"> -->
+								<button type="submit" class="search-btn">Search</button>
+							</form>
 						</div>
-
 					</div>
 
-					<!-- /SEARCH BAR -->
+				</div>
 
-					<!-- ACCOUNT -->
-					<div class="col-md-3 clearfix">
-						<div class="header-ctn">
+				<!-- /SEARCH BAR -->
 
-							<!-- Cart -->
-							<?php if (isset($_SESSION["username"])): ?>
+				<!-- ACCOUNT -->
+				<div class="col-md-3 clearfix">
+					<div class="header-ctn">
+
+						<!-- Cart -->
+						<?php if (isset($_SESSION["username"])) : ?>
 							<div class="dropdown">
 
 
-						<!-- /SEARCH BAR -->
+								<!-- /SEARCH BAR -->
 
-						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
-							<div class="header-ctn">
+								<!-- ACCOUNT -->
+								<div class="col-md-3 clearfix">
+									<div class="header-ctn">
 
-								<!-- Cart -->
+										<!-- Cart -->
 
-								<div class="dropdown">
+										<div class="dropdown">
 
-								<a href="cartview.php">
-									<i class="fa fa-shopping-cart"></i>
-									<span>Your Cart</span>
-									<div class="qty" id="cart-item"></div>
-								</a>
+											<a href="cartview.php">
+												<i class="fa fa-shopping-cart"></i>
+												<span>Your Cart</span>
+												<div class="qty" id="cart-item"></div>
+											</a>
 
-								
-									<div class="dropdown">
 
-										<!-- /SEARCH BAR -->
+											<div class="dropdown">
 
-										<!-- ACCOUNT -->
-										<div class="col-md-3 clearfix">
-											<div class="header-ctn">
-												<!-- Cart -->
-												<?php if (isset($_SESSION["username"])) : ?>
-												<div class="dropdown">
+												<!-- /SEARCH BAR -->
 
-													<a href="cartview.php">
-														<i class="fa fa-shopping-cart"></i>
-														<span>Your Cart</span>
-														<div class="qty" id="cart-item"></div>
-													</a>
+												<!-- ACCOUNT -->
+												<div class="col-md-3 clearfix">
+													<div class="header-ctn">
+														<!-- Cart -->
+														<?php if (isset($_SESSION["username"])) : ?>
+															<div class="dropdown">
+
+																<a href="cartview.php">
+																	<i class="fa fa-shopping-cart"></i>
+																	<span>Your Cart</span>
+																	<div class="qty" id="cart-item"></div>
+																</a>
+															</div>
+														<?php endif; ?>
+														<!-- /Cart -->
+
+														<!-- Menu Toogle -->
+														<div class="menu-toggle">
+															<a href="#">
+																<i class="fa fa-bars"></i>
+																<span>Menu</span>
+															</a>
+														</div>
+														<!-- /Menu Toogle -->
+													</div>
 												</div>
-												<?php endif; ?>
-											<!-- /Cart -->
+											<!-- /ACCOUNT -->
+											</div>
+											<!-- row -->
 
-											<!-- Menu Toogle -->
-											<div class="menu-toggle">
-												<a href="#">
-													<i class="fa fa-bars"></i>
-													<span>Menu</span>
-												</a>
-											</div>
-											<!-- /Menu Toogle -->
-											</div>
-										</div><?php endif; ?>
-										<!-- /ACCOUNT -->
+										</div>
+										<!-- container -->
 									</div>
-									<!-- row -->
-
+								</div>
+								<!-- /MAIN HEADER -->
 							</div>
-							<!-- container -->
-						</div>
-						<!-- /MAIN HEADER -->
-						
+					</div><?php endif; ?>
+				</div>
+
 	</header>
 	<!-- /HEADER -->
 	<!-- NAVIGATION -->
