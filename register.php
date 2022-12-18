@@ -30,28 +30,28 @@
         <form action="check-register.php" method="post">
             <div class="form-group">
                 <label for="firstname">Your Name</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" required>
             </div>
 
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" class="form-control" name="phone">
+                <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" class="form-control" name="phone" required>
             </div>
             <div class="form-group">
                 <label for="Email1">Email address</label>
-                <input type="email" class="form-control" aria-describedby="emailHelp" name="email">
+                <input type="email" class="form-control" aria-describedby="emailHelp" name="email" required>
             </div>
             <div class="form-group">
                 <label for="firstname">Username</label>
-                <input type="text" class="form-control" name="username">
+                <input type="text" class="form-control" name="username" required>
             </div>
             <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control"  name="password">
+                <input type="password" class="form-control"  name="password" required>
             </div>
             <div class="form-group">
                 <label for="Password">Confirm Password</label>
-                <input type="password" class="form-control"  name="confpassword">
+                <input type="password" class="form-control"  name="confpassword" required>
             </div>
             <button type="submit" class="btn btn-primary" name="btn_submit">Sign up</button>
         </form>

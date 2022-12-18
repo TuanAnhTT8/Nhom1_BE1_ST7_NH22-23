@@ -18,13 +18,16 @@ if (isset($_POST["btn_submit"])) {
     $checkUsername = $user->checkUsernameExists($username);
 
     if ($checkEmail) {
-        alert("Please enter");
-        //header("location:index.php");
-    } elseif(!$checkUsername){
-        // alert('Login failed');
-        header("location:login.php");
+        alert("This email is already in use");        
+    } 
+    elseif($checkUsername){
+        alert("This username is already in use");       
+    }
+    elseif($password != $confpassword){
+        alert("Password and ConfPassword are not the same");       
     }
 }
 function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
+    //header("Location:register.php");
 }

@@ -25,10 +25,9 @@ class User extends Db
         return $items; //return an array
     }
     public function checkRegister($name,$phone,$email,$username,$password){
-        $sql = self::$connection->prepare("SELECT * FROM user 
-        WHERE `username` = ? AND `password` = ?");
+        $sql = self::$connection->prepare("INSERT INTO `user`(`name`, `phone`, `email`, `username`, `password`) VALUES ?,?,?,?,?");
         //$password = md5($password);
-        $sql->bind_param("ss", $username, $password);
+        $sql->bind_param("sssss",$name,$phone,$email,$username,$password);
         $sql->execute(); //return an object
         $items = array();
         $items = $sql->get_result()->num_rows;
