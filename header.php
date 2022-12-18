@@ -64,6 +64,7 @@ if (isset($_GET['type'])) {
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+<<<<<<< HEAD
 </head>
 
 <body>
@@ -92,6 +93,24 @@ if (isset($_GET['type'])) {
 					<?php } ?>
 				</ul>
 				<!-- /LOGIN -->
+=======
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+					</ul>
+				</div>
+>>>>>>> 1-TuanAnh
 			</div>
 		</div>
 		<!-- /TOP HEADER -->
@@ -124,6 +143,7 @@ if (isset($_GET['type'])) {
 							</form>
 						</div>
 					</div>
+<<<<<<< HEAD
 					<!-- /SEARCH BAR -->
 
 					<!-- ACCOUNT -->
@@ -133,6 +153,15 @@ if (isset($_GET['type'])) {
 							<!-- Cart -->
 							<?php if (isset($_SESSION["username"])): ?>
 							<div class="dropdown">
+=======
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Cart -->
+								<div class="dropdown">
+>>>>>>> 1-TuanAnh
 								<a href="cartview.php">
 									<i class="fa fa-shopping-cart"></i>
 									<span>Your Cart</span>
