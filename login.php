@@ -71,43 +71,8 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- jQuery Plugins -->
+	<script src="js/login.js"></script>
 </body>
-<!-- <script> -->
-	const form = document.querySelector('form');
-	const iconLoading = document.getElementById("loading");
-	const inputPassword = document.getElementById("password");
-	const showLoading = () => {
-		iconLoading.style.display = "flex";
-	};
-	const hideLoading = () => {
-		iconLoading.style.display = "none";
-	};
-
-	const onToggleTypePassword = () => {
-		togglePassword.classList.toggle("fa-eye-slash");
-
-		if (inputPassword.type === "password") {
-			inputPassword.type = "text";
-		} else {
-			inputPassword.type = "password";
-		}
-	};
-
-	togglePassword.addEventListener("click", onToggleTypePassword);
-
-	form.onsubmit = (e) => {
-		if (form.checkValidity() === false) {
-			//Ngăn ko cho form được gửi đi
-			e.preventDefault();
-			e.stopPropagation()
-			form.classList.add('was-validated');
-		} else {
-			showLoading();
-			setTimeout(() => {
-				hideLoading();
-			}, 1000);
-		}
-	};
-</script>
-
 </html>
