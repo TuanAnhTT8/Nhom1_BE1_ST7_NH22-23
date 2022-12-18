@@ -121,6 +121,9 @@ $getAllProtype = $protype->getAllProtype();
 						</div>
 					</div>
 					<!-- /SEARCH BAR -->
+=======
+				</div>
+>>>>>>> origin/master
 
 					<!-- ACCOUNT -->
 					<div class="col-md-3 clearfix">
