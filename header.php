@@ -5,14 +5,14 @@ require "model/product.php";
 require "model/manufacture.php";
 require "model/protype.php";
 require "model/cart.php";
-// require "model/user.php";
+require "model/user.php";
 // require "model/order.php";
 
 $product = new Product;
 $manu = new Manufacture;
 $protype = new Protype;
 $cart = new Cart;
-// $user = new User;
+$user = new User;
 
 $get5NewestProduct = $product->get5NewestProducts();
 $getAllProducts = $product->getAllProducts();
@@ -54,8 +54,8 @@ if (isset($_GET['type'])) {
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/Cartview.css">
-	<link rel="stylesheet" href="css/loading.css">
+	<!-- <link rel="stylesheet" href="css/Cartview.css">
+	<link rel="stylesheet" href="css/loading.css"> -->
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,6 +63,7 @@ if (isset($_GET['type'])) {
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+
 
 </head>
 
@@ -92,6 +93,17 @@ if (isset($_GET['type'])) {
 					<?php } ?>
 				</ul>
 				<!-- /LOGIN -->
+
+
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			
+		</div>
+		<!-- /TOP HEADER -->
+
 				</head>
 
 				<body>
@@ -101,6 +113,7 @@ if (isset($_GET['type'])) {
 
 			</div>
 			<!-- /TOP HEADER -->
+
 
 			<!-- MAIN HEADER -->
 			<div id="header">
@@ -130,6 +143,19 @@ if (isset($_GET['type'])) {
 							</div>
 						</div>
 
+					</div>
+
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+
+							<!-- Cart -->
+							<?php if (isset($_SESSION["username"])): ?>
+							<div class="dropdown">
+
+
 						<!-- /SEARCH BAR -->
 
 						<!-- ACCOUNT -->
@@ -137,7 +163,16 @@ if (isset($_GET['type'])) {
 							<div class="header-ctn">
 
 								<!-- Cart -->
-								<?php if (isset($_SESSION["username"])) : ?>
+
+								<div class="dropdown">
+
+								<a href="cartview.php">
+									<i class="fa fa-shopping-cart"></i>
+									<span>Your Cart</span>
+									<div class="qty" id="cart-item"></div>
+								</a>
+
+								
 									<div class="dropdown">
 
 										<!-- /SEARCH BAR -->
@@ -146,6 +181,7 @@ if (isset($_GET['type'])) {
 										<div class="col-md-3 clearfix">
 											<div class="header-ctn">
 												<!-- Cart -->
+												<?php if (isset($_SESSION["username"])) : ?>
 												<div class="dropdown">
 
 													<a href="cartview.php">
@@ -154,7 +190,7 @@ if (isset($_GET['type'])) {
 														<div class="qty" id="cart-item"></div>
 													</a>
 												</div>
-											<?php endif; ?>
+												<?php endif; ?>
 											<!-- /Cart -->
 
 											<!-- Menu Toogle -->
@@ -166,14 +202,16 @@ if (isset($_GET['type'])) {
 											</div>
 											<!-- /Menu Toogle -->
 											</div>
-										</div>
+										</div><?php endif; ?>
 										<!-- /ACCOUNT -->
 									</div>
 									<!-- row -->
+
 							</div>
 							<!-- container -->
 						</div>
 						<!-- /MAIN HEADER -->
+						
 	</header>
 	<!-- /HEADER -->
 	<!-- NAVIGATION -->
