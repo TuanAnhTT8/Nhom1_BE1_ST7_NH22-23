@@ -15,42 +15,6 @@ if (isset($_GET['keyword'])) {
 		<div class="container">
 			<!-- row -->
 			<div class="row">
-				<!-- ASIDE -->
-				<div id="aside" class="col-md-3">
-					<!-- aside Widget -->
-					<!-- <div class="aside">
-						<div class="section-title">
-							<h4 class="title">Feature products</h4>
-							<div class="section-nav">
-								<div id="slick-nav-5" class="products-slick-nav"></div>
-							</div>
-						</div>
-
-						<div class="products-widget-slick" data-nav="#slick-nav-5">
-							<div> -->
-
-					<!-- product widget -->
-					<!-- <div class="product-widget">
-										<div class="product-img">
-											<img src="./img/" alt="">
-										</div>
-										<div class="product-body">
-											<p class="product-category"></p>
-											<h3 class="product-name"><a href="product_detail.php?id=&type_id="> </a></h3>
-											<h4 class="product-price">$</h4>
-										</div>
-									</div> -->
-					<!-- /product widget -->
-
-					<!-- </div>
-
-						</div>
-					</div> -->
-
-
-					<!-- /aside Widget -->
-				</div>
-				<!-- /ASIDE -->
 
 				<!-- STORE -->
 				<div id="store" class="col-md-9">
@@ -66,20 +30,30 @@ if (isset($_GET['keyword'])) {
 					<!-- store products -->
 					<div class="row">
 						<?php
-                        $perpage = 6;
-                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                        $total = count($search);
-                        $get6ProductsSearch = $product->get6ProductsSearch($keyword, $page, $perPage);
+                        $limit = 9;
+                        $currentpage = isset($_GET['page']) ? $_GET['page'] : 1;
+                        $totalrecords = count($search);
+						$url = $_SERVER['PHP_SELF'] . "&keyword=" . $keyword  ;
 
-                        //
-                        if ($total == 0) {
+                        $get6ProductsSearch = $product->get6ProductsSearch($keyword, $currentpage, $limit);
+
+                        $totalpage = ceil($totalrecords / $limit);
+                        if ($currentpage > $totalpage) {
+	                        $currentpage = $totalpage;
+                        } else if ($currentpage < 1) {
+	                        $currentpage = 1;
+                        }
+
+                        $start = ($currentpage - 1) * $limit;
                         ?>
+
+						<!-- <?php if ($totalrecords == 0) { ?> -->
 						<div class="col-md-12">
 							<label>NO RESULTS FOUND</label>
 						</div>
 
 						<?php
-	                        // 
+	                        
                         } else {
 	                        foreach ($get6ProductsSearch as $values): ?>
 						<!-- product -->
@@ -125,7 +99,7 @@ if (isset($_GET['keyword'])) {
 					<div class="store-filter clearfix">
 						<ul class="store-pagination">
 							<?php(isset($_GET['page'])) ? $currentPage = $_GET['page'] : $currentPage = 1; ?>
-							<?php echo $product->paginate($currentPage, $url, $total, $perPage) ?>
+							<?php echo $product->paginate($currentpage, $url, $totalrecords, $limit) ?>
 						</ul>
 					</div>
 					<!-- /store bottom filter -->

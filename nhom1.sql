@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th12 10, 2022 lúc 06:20 AM
--- Phiên bản máy phục vụ: 5.7.36
--- Phiên bản PHP: 7.4.26
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 18, 2022 at 08:47 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,43 +18,39 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `nhom1`
+-- Database: `nhom1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cart`
+-- Table structure for table `cart`
 --
 
-DROP TABLE IF EXISTS `cart`;
-CREATE TABLE IF NOT EXISTS `cart` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `product_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `product_price` int(11) NOT NULL,
   `product_img` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `qty` int(10) NOT NULL,
   `total_price` int(12) NOT NULL,
-  `product_code` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `product_code` varchar(11) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `manufacture`
+-- Table structure for table `manufacture`
 --
 
-DROP TABLE IF EXISTS `manufacture`;
-CREATE TABLE IF NOT EXISTS `manufacture` (
-  `manu_id` int(11) NOT NULL AUTO_INCREMENT,
-  `manu_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`manu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `manufacture` (
+  `manu_id` int(11) NOT NULL,
+  `manu_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `manufacture`
+-- Dumping data for table `manufacture`
 --
 
 INSERT INTO `manufacture` (`manu_id`, `manu_name`) VALUES
@@ -67,25 +63,23 @@ INSERT INTO `manufacture` (`manu_id`, `manu_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `products`
+-- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `manu_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `price` int(11) DEFAULT NULL,
   `image` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci,
+  `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `feature` tinyint(4) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `image`, `description`, `feature`, `created_at`) VALUES
@@ -98,7 +92,7 @@ INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `image`, `d
 (7, 'Samsung Galaxy A03s', 2, 2, 3490000, 'samsung-galaxy-a03s-black-gc-org.jpg', 'Nhằm đem đến cho người dùng thêm sự lựa chọn trong phân khúc, Samsung đã cho ra mắt thêm một chiếc điện thoại giá rẻ với tên gọi Galaxy A03s. So với người tiền nhiệm Galaxy A02s, thiết bị sẽ có một số nâng cấp mới, đây hứa hẹn sẽ là sản phẩm đáng để bạn trải nghiệm.', 1, '2022-10-30 13:16:13'),
 (8, 'Samsung Galaxy Z Fold2 5G', 2, 2, 44000000, 'samsung-galaxy-z-fold-2-den-1-org.jpg', 'Galaxy Z Fold 2 là tên gọi chính thức của điện thoại màn hình gập cao cấp của Samsung. Với nhiều nâng cấp tiên phong về thiết kế, hiệu năng và camera, hứa hẹn đây sẽ là một siêu phẩm thành công tiếp theo đến từ “ông trùm” sản xuất điện thoại lớn nhất thế giới.', 1, '2022-10-30 13:16:13'),
 (9, 'Samsung Galaxy Z Flip3 5G 128GB ', 2, 2, 24990000, 'samsung-galaxy-z-flip-3-kem-1-org.jpg', 'Trong sự kiện Galaxy Unpacked hồi 11/8, Samsung đã chính thức trình làng mẫu điện thoại màn hình gập thế hệ mới mang tên Galaxy Z Flip3 5G 128GB. Đây là một siêu phẩm với màn hình gập dạng vỏ sò cùng nhiều điểm cải tiến và thông số ấn tượng, sản phẩm chắc chắn sẽ thu hút được rất nhiều sự quan tâm của người dùng, đặc biệt là phái nữ.', 1, '2022-10-30 13:16:13'),
-(26, 'iPhone 14 Pro 128GB', 1, 2, 3099000, 'iphone-14-promax-128gb.jpg', 'Tại sự kiện ra mắt sản phẩm thường niên diễn ra vào tháng 9/2022, Apple đã trình làng iPhone 14 Pro với những cải tiến về thiết kế màn hình, hiệu năng, sẵn sàng cùng bạn chinh phục mọi thử thách. Giờ đây người dùng đã có thể mua sắm những sản phẩm iPhone 14 series từ ngày 14/10/2022 tại Thế Giới Di Động với đầy đủ các phiên bản.', 1, '2022-10-30 13:16:13'),
+(26, 'samsung 14 Pro 128GB', 1, 2, 3099000, 'iphone-14-promax-128gb.jpg', '', 1, '2022-10-30 13:16:13'),
 (11, 'Laptop Apple MacBook Air M1 2020', 1, 1, 899000, 'macbook-air-m1-2020-gold-02-org.jpg', 'Laptop Apple MacBook Air M1 2020 thuộc dòng laptop cao cấp sang trọng có cấu hình mạnh mẽ, chinh phục được các tính năng văn phòng lẫn đồ hoạ mà bạn mong muốn, thời lượng pin dài, thiết kế mỏng nhẹ sẽ đáp ứng tốt các nhu cầu làm việc của bạn.', 1, '2022-10-30 13:16:13'),
 (12, 'Laptop Apple MacBook Pro 16 M1 Max 2021', 1, 1, 90990000, 'apple-macbook-pro-16-m1-max-2021-1.jpg', 'Thật ấn tượng với Apple MacBook Pro 16 M1 Max 2021 mang trên mình \"bộ áo mới\" độc đáo, cuốn hút mọi ánh nhìn cùng màn hình tai thỏ lần đầu tiên xuất hiện ở dòng Mac và ẩn bên trong là bộ cấu hình mạnh mẽ tuyệt vời đến từ con chip M1 Max tân tiến.', 1, '2022-10-30 13:16:13'),
 (13, 'Laptop Apple MacBook Pro 14 M1 Pro 2021', 1, 1, 64990000, 'apple-macbook-pro-14-m1-pro-2021-10-core-cpu-1.jpg', 'Apple MacBook Pro 14 inch M1 Pro 2021 gây ấn tượng mạnh khi mang trên mình vẻ ngoài có nhiều cải tiến mới, độc đáo và cuốn hút mọi ánh nhìn cùng hiệu năng mạnh mẽ, đỉnh cao đến từ con chip M1 Pro hiện đại, đáp ứng tối ưu nhu cầu sử dụng cho giới công nghệ, kỹ thuật cũng như cá nhà sáng tạo nội dung chuyên nghiệp.', 1, '2022-10-30 13:16:13'),
@@ -113,27 +107,21 @@ INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `image`, `d
 (22, 'Xiaomi Watch S1 46.5mm ', 5, 5, 2390000, 'xiaomi-watch-s1-1-1.jpg', 'Đồng hồ thông minh Mi Watch này mang phong cách trẻ trung, cá tính và đậm chất thể thao. Đồng hồ được trang bị công nghệ màn hình AMOLED với kích thước 1.39 inch cùng độ phân giải 454 x 454 pixels và độ sáng lên đến 450 nits giúp người dùng có thể quan sát thông tin rõ nét, chất lượng. Bên cạnh đó, đồng hồ còn được trang bị mặt kính cường lực Gorilla Glass 3 hạn chế trầy xước và tăng độ bền cho thiết bị. ', 1, '2022-10-30 13:16:13'),
 (23, 'Mi Band 6', 5, 5, 949000, 'mi-band-6-1-2-org.jpg', 'Vòng đeo tay thông minh Mi Band 6 là phiên bản đáng mong đợi của nhà Xiaomi với thiết kế màn hình tràn viền cho bạn góc nhìn tốt hơn. Mặt kính cường lực chống trầy xước tốt cùng dây đeo cao su với thiết kế ôm trọn cổ tay, không thấm nước khi đeo, mang lại cho bạn cảm giác dễ chịu cả ngày dài.', 1, '2022-10-30 13:16:13'),
 (24, 'Tai nghe Bluetooth True Wireless Sony WF-C500', 4, 4, 2290000, 'bluetooth-true-wireless-sony-wf-c500-trang-2.jpg', 'Tai nghe Bluetooth True Wireless Sony WF-C500 được thiết kế nhỏ gọn, bo tròn các góc cạnh để vừa khớp với đôi tai của bạn cho cảm giác dễ chịu khi đeo. Bạn có thể tùy thích lựa chọn chiếc tai nghe phù hợp cho phong cách, sở thích của bản thân với các màu trắng, đen, cam, xanh ngọc.', 1, '2022-10-30 13:16:13'),
-(25, 'Samsung Galaxy Book Flex', 2, 1, 31550000, 'galaxy-book-flex2-alpha-4_800x450.jpg\r\n', 'Laptop Samsung Galaxy Book Flex là chiếc máy tính xách tay chạy hệ điều hành Windows 10 Home, tốc độ xung nhịp 3.7GHz giúp máy chạy mượt mà và đa nhiệm. Laptop được trang bị màn hình kích thước 13.3\" cùng công nghệ IPS và độ phân giải 1920 x 1080pixels đem đến hình ảnh hiện thị sắc nét và chân thực.Laptop Samsung Galaxy Book Flex có trọng lượng chỉ 1.2kg thuận tiện mang theo đi làm mỗi ngày.', 1, '2022-10-30 13:16:13'),
-(27, 'test', 2, 1, 111, 'Desktop Capture-10-16-2022 7-03-37-127.jpg', 'test', 1, NULL),
-(28, 'test 2', 2, 2, 1111, 'League of Legends-11-12-2022 14-33-34-552.jpg', 'test 12', 1, NULL),
-(29, 'test 2', 2, 2, 1111, 'League of Legends-11-12-2022 14-33-34-552.jpg', 'test 12', 1, NULL),
-(30, 'test 3', 4, 3, 33333, 'League of Legends-11-12-2022 14-38-06-963.jpg', 'test 3', 1, NULL);
+(25, 'Samsung Galaxy Book Flex', 2, 1, 31550000, 'galaxy-book-flex2-alpha-4_800x450.jpg\r\n', 'Laptop Samsung Galaxy Book Flex là chiếc máy tính xách tay chạy hệ điều hành Windows 10 Home, tốc độ xung nhịp 3.7GHz giúp máy chạy mượt mà và đa nhiệm. Laptop được trang bị màn hình kích thước 13.3\" cùng công nghệ IPS và độ phân giải 1920 x 1080pixels đem đến hình ảnh hiện thị sắc nét và chân thực.Laptop Samsung Galaxy Book Flex có trọng lượng chỉ 1.2kg thuận tiện mang theo đi làm mỗi ngày.', 1, '2022-10-30 13:16:13');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `protypes`
+-- Table structure for table `protypes`
 --
 
-DROP TABLE IF EXISTS `protypes`;
-CREATE TABLE IF NOT EXISTS `protypes` (
-  `type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `protypes` (
+  `type_id` int(11) NOT NULL,
+  `type_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `protypes`
+-- Dumping data for table `protypes`
 --
 
 INSERT INTO `protypes` (`type_id`, `type_name`) VALUES
@@ -142,6 +130,97 @@ INSERT INTO `protypes` (`type_id`, `type_name`) VALUES
 (3, 'Camera'),
 (4, 'Earphone'),
 (5, 'Smartwatch');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `username` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(150) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `phone`, `email`, `username`, `password`) VALUES
+(1, 'Minh', NULL, NULL, 'admin', '123654'),
+(2, 'Tuan Anh', '0123456789', 'tuanh@gmail.com', 'user', '123456');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `manufacture`
+--
+ALTER TABLE `manufacture`
+  ADD PRIMARY KEY (`manu_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `protypes`
+--
+ALTER TABLE `protypes`
+  ADD PRIMARY KEY (`type_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `manufacture`
+--
+ALTER TABLE `manufacture`
+  MODIFY `manu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `protypes`
+--
+ALTER TABLE `protypes`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

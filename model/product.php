@@ -1,30 +1,31 @@
 <?php
 class Product extends Db
 {
-    public function get6ProductsSearch($keyword, $page, $perPage){
-        $firstLink = ($page - 1) * $perPage;
+    public function get6ProductsSearch($keyword, $currentpage, $limit){
+        $firstLink = ($currentpage - 1) * $limit;
         $keyword = "'%$keyword%'";
 
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE $keyword ");
-                $sql->bind_param("ii", $firstLink, $perPage);
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE $keyword LIMIT ?,?");
+                $sql->bind_param("ii", $firstLink, $limit);
                 $sql->execute(); //return an object
                 $items = array();
                 $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
                 return $items; //return an array
     }
-    function paginate($currentPage, $url, $total, $perPage)
+    function paginate($currentpage, $url, $totalrecords, $limit)
     {
-        $totalLinks = ceil($total / $perPage);
-        $link = "";
-        for ($j = 1; $j <= $totalLinks; $j++) {
-            if ($j == $currentPage){
-                $link = $link . "<li class='active'>$j</li>";
+        $totalpages = ceil($totalrecords / $limit);
+        $page = "";
+
+        for ($j = 1; $j <= $totalpages; $j++) {
+            if ($j == $currentpage){
+                $page = $page . "<li class='active'>$j</li>";
             }
             else{
-                $link = $link . "<li><a href='$url&page=$j'> $j </a></li>";
+                $page = $page . "<li><a href='$url&page=$j'> $j </a></li>";
             }
         }
-        return $link;
+        return $page;
     }
     public function getAllProducts()
     {
