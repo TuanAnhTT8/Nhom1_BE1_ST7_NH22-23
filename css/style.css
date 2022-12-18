@@ -2242,6 +2242,30 @@ textarea.input {
     transition: 0.2s all;
 }
 
+.card .add-to-cart .add-to-cart-btn:hover {
+    background-color: #FFF;
+    color: #D10024;
+    border-color: #D10024;
+}
+
+.list-inline .text-muted {
+    color: #D10024;
+}
+
+.card .card-body .price {
+    color: #D10024;
+}
+
+.product-path {
+    padding: 15px 0px;
+    width: 100%;
+    border-bottom: 2px solid #e4e7ed;
+}
+
+.product-path li {
+    margin-left: 5px !important;
+}
+
 
 /*=========================================================
 	13 -> RESPONSIVE

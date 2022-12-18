@@ -102,11 +102,7 @@
 											</div>
 											<div class="product-body">
 												<p class="product-category">Category</p>
-<<<<<<< HEAD
-												<h3 class="product-name"><a href="product-detail.php?id=<?php echo $value['id'] ?>&type_id=<?php echo $value['type_id'] ?>"><?php echo substr($value['name'], 0, 20) ?>...</a></h3>
-=======
 												<h3 class="product-name"><a href="product_detail.php?id=<?php echo $value['id'] ?>"><?php echo substr($value['name'], 0, 20) ?>...</a></h3>
->>>>>>> 1-TuanAnh
 												<h4 class="product-price"><?php echo number_format($value["price"]) ?> VND</h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
