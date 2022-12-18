@@ -28,10 +28,8 @@ include "sidebar.php";
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Projects</h3>
-          <h3 class="card-title">
-          <a href="project-add.php" class="btn btn-info btn-sm"> Add </a>
-          </h3>
+          <h3 class="card-title">Products</h3>
+          <a href="product-add.php" class="btn btn-info btn-sm"> Add </a>
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
@@ -46,27 +44,27 @@ include "sidebar.php";
               <thead>
                   <tr>
                       <th style="width: 1%">
-                          Id
+                          ID
+                      </th>
+                      <th style="width: 20%">
+                         Images
                       </th>
                       <th style="width: 30%">
                           Name
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 10%">
                           Manu_id
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 10%">
                           Type_id
                       </th>
-                      <th style="width: 20%">
-                          Prices
+                      <th style="width: 10%">
+                          Price
                       </th>
-                      <th style="width: 30%">
-                         Images
-                      </th>
-                      <th style="width: 30%">
+                      <th style="width: 50%">
                         Descriptions
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 10%">
                         Feature
                       </th>
                       
@@ -77,6 +75,13 @@ include "sidebar.php";
                   <tr>
                       <td>
                           <?php echo $values['id'] ?>
+                      </td>
+                      <td>
+                          <ul class="list-inline">
+                              <li class="list-inline-item">
+                                  <img  width=150px src="../img/<?php echo $values['image'] ?>">
+                              </li>
+                          </ul>
                       </td>
                       <td>
                           <a>
@@ -97,31 +102,18 @@ include "sidebar.php";
                           <?php echo $values['price'] ?>
                       </td>
                       <td>
-                          <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img  width=100px src="../img/<?php echo $values['image'] ?>">
-                              </li>
-                              
-                          </ul>
-                      </td>
-                      <td>
                           <?php echo substr($values['description'], 0, 100) ?>
                       </td>
                       <td>
                           <?php echo $values['feature'] ?>
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="product-edit.php?id=<?php echo $values['id']?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="#">
+                          <a class="btn btn-danger btn-sm" href="product-del.php?id= <?php echo $values['id'] ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
