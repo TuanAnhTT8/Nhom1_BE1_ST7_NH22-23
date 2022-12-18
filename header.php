@@ -172,7 +172,7 @@ if (isset($_GET['type'])) {
 									<div class="qty" id="cart-item"></div>
 								</a>
 
-								<?php if (isset($_SESSION["username"])) : ?>
+								
 									<div class="dropdown">
 
 										<!-- /SEARCH BAR -->
@@ -181,6 +181,7 @@ if (isset($_GET['type'])) {
 										<div class="col-md-3 clearfix">
 											<div class="header-ctn">
 												<!-- Cart -->
+												<?php if (isset($_SESSION["username"])) : ?>
 												<div class="dropdown">
 
 													<a href="cartview.php">
@@ -189,7 +190,7 @@ if (isset($_GET['type'])) {
 														<div class="qty" id="cart-item"></div>
 													</a>
 												</div>
-											<?php endif; ?>
+												<?php endif; ?>
 											<!-- /Cart -->
 
 											<!-- Menu Toogle -->
@@ -201,7 +202,7 @@ if (isset($_GET['type'])) {
 											</div>
 											<!-- /Menu Toogle -->
 											</div>
-										</div>
+										</div><?php endif; ?>
 										<!-- /ACCOUNT -->
 									</div>
 									<!-- row -->
@@ -210,6 +211,7 @@ if (isset($_GET['type'])) {
 							<!-- container -->
 						</div>
 						<!-- /MAIN HEADER -->
+						
 	</header>
 	<!-- /HEADER -->
 	<!-- NAVIGATION -->
