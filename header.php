@@ -19,11 +19,7 @@ $getAllProducts = $product->getAllProducts();
 $getAllManu = $manu->getAllManufactures();
 $getAllProtype = $protype->getAllProtype();
 
-if (isset($_GET['type'])) {
-	$type = $_GET['type'];
-} else {
-	$type = 0;
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +60,6 @@ if (isset($_GET['type'])) {
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-
 </head>
 
 <body>
@@ -82,69 +77,49 @@ if (isset($_GET['type'])) {
 				<ul class="header-links pull-right">
 					<?php if (isset($_SESSION["username"])) { ?>
 
-						<li><a href="viewaccount.php"><i class="fa fa-user-o"></i>
-								<?php echo $_SESSION["username"] ?>
-							</a></li>
-						<li><a href="logout.php">Log out</a></li>
+					<li><a href="viewaccount.php"><i class="fa fa-user-o"></i>
+							<?php echo $_SESSION["username"] ?>
+						</a></li>
+					<li><a href="logout.php">Log out</a></li>
 
 					<?php } else { ?>
-						<li><a href="login.php"><i class="fa fa-user-o"> Login</i></a></li>
+					<li><a href="login.php"><i class="fa fa-user-o"> Login</i></a></li>
 
 					<?php } ?>
 				</ul>
 				<!-- /LOGIN -->
-
-
-    </head>
-	<body>
-		<!-- HEADER -->
-		<header>
-			<!-- TOP HEADER -->
-			
+			</div>
 		</div>
 		<!-- /TOP HEADER -->
 
-				</head>
-
-				<body>
-					<!-- HEADER -->
-					<header>
-						<!-- TOP HEADER -->
-
-			</div>
-			<!-- /TOP HEADER -->
-
-
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="index.php" class="logo">
-									<img src="./img/logo.png" alt="">
-								</a>
-							</div>
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="index.php" class="logo">
+								<img src="./img/logo.png" alt="">
+							</a>
 						</div>
-						<!-- /LOGO -->
-
-						<!-- SEARCH BAR -->
-						<div class="col-md-6">
-							<div class="header-search">
-								<form method="get" action="result.php">
-									<input class="input-select" placeholder="Search here" pattern="^[a-zA-Z0-9]+$" name="keyword" value="<?php if (isset($_GET['keyword']))
-																																				echo $_GET['keyword'] ?>">
-									<!-- <input type="hidden" value="default" name="sort"> -->
-									<button type="submit" class="search-btn">Search</button>
-								</form>
-							</div>
-						</div>
-
 					</div>
+					<!-- /LOGO -->
 
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form method="get" action="result.php">
+								<input class="input-select" placeholder="Search here" pattern="^[a-zA-Z0-9]+$"
+									name="keyword" value="<?php if (isset($_GET['keyword']))
+	                                echo $_GET['keyword'] ?>">
+								<!-- <input type="hidden" value="default" name="sort"> -->
+								<button type="submit" class="search-btn">Search</button>
+							</form>
+						</div>
+					</div>
 					<!-- /SEARCH BAR -->
 
 					<!-- ACCOUNT -->
@@ -154,64 +129,32 @@ if (isset($_GET['type'])) {
 							<!-- Cart -->
 							<?php if (isset($_SESSION["username"])): ?>
 							<div class="dropdown">
-
-
-						<!-- /SEARCH BAR -->
-
-						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
-							<div class="header-ctn">
-
-								<!-- Cart -->
-
-								<div class="dropdown">
-
 								<a href="cartview.php">
 									<i class="fa fa-shopping-cart"></i>
 									<span>Your Cart</span>
 									<div class="qty" id="cart-item"></div>
 								</a>
-
-								
-									<div class="dropdown">
-
-										<!-- /SEARCH BAR -->
-
-										<!-- ACCOUNT -->
-										<div class="col-md-3 clearfix">
-											<div class="header-ctn">
-												<!-- Cart -->
-												<?php if (isset($_SESSION["username"])) : ?>
-												<div class="dropdown">
-
-													<a href="cartview.php">
-														<i class="fa fa-shopping-cart"></i>
-														<span>Your Cart</span>
-														<div class="qty" id="cart-item"></div>
-													</a>
-												</div>
-												<?php endif; ?>
-											<!-- /Cart -->
-
-											<!-- Menu Toogle -->
-											<div class="menu-toggle">
-												<a href="#">
-													<i class="fa fa-bars"></i>
-													<span>Menu</span>
-												</a>
-											</div>
-											<!-- /Menu Toogle -->
-											</div>
-										</div><?php endif; ?>
-										<!-- /ACCOUNT -->
-									</div>
-									<!-- row -->
-
 							</div>
-							<!-- container -->
+							<?php endif; ?>
+							<!-- /Cart -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#">
+									<i class="fa fa-bars"></i>
+									<span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
 						</div>
-						<!-- /MAIN HEADER -->
-						
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
 	<!-- NAVIGATION -->
