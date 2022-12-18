@@ -18,7 +18,7 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Products
-                <span class="badge badge-info right">2</span>
+                <!-- <span class="badge badge-info right">2</span> -->
               </p>
             </a>
           </li>
@@ -28,7 +28,7 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Manufactures
-                <span class="badge badge-info right">2</span>
+                <!-- <span class="badge badge-info right">2</span> -->
               </p>
             </a>
           </li>
@@ -38,7 +38,17 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Protypes
-                <span class="badge badge-info right">2</span>
+                <!-- <span class="badge badge-info right">2</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="manufacture.php" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                User
+                <!-- <span class="badge badge-info right">2</span> -->
               </p>
             </a>
           </li>

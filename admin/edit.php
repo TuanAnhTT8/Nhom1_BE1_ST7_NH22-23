@@ -2,8 +2,6 @@
 require "config.php";
 require "model/db.php";
 require "model/product.php";
-require "model/manufacture.php";
-require "model/protype.php";
 
 
 $product = new Product;
@@ -12,13 +10,15 @@ if(isset($_POST['name'])){
     $name = $_POST['name'];
     $price = $_POST['price'];
     $image = $_FILES['image']['name'];
-    $manu_id = $_POST['manu_id'];
-    $type_id = $_POST['type_id'];
+    $manu_id = $_POST['manu'];
+    $type_id = $_POST['type'];
     $des = $_POST['des'];
     $feature = isset($_POST['feature'])?1:0;
+    $id = $_POST['id'];
+    var_dump($_POST);
 
     //goi phuong thuc them
-    $product->addProduct($name,$manu_id,$type_id,$price,$image,$des,$feature);
+    $product->editProduct($name, $manu_id, $type_id, $price, $image, $des, $feature,$id);
 
     
     //xu ly upload

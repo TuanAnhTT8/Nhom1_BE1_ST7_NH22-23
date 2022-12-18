@@ -30,22 +30,14 @@ class Product extends Db
         return $items; //return an array
     }
 
-    public function search($type, $keyword)
+    public function search($keyword)
     {
         $keyword = "'%$keyword%'";
-        if ($type != 0) {
-            $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_name` LIKE $keyword AND `type_id`= ?");
-            $sql->bind_param("s", $type);
+            $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE $keyword");
             $sql->execute(); //return an object
             $items = array();
             $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
             return $items; //return an array
-        } else {
-            $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_name` LIKE $keyword");
-            $sql->execute(); //return an object
-            $items = array();
-            $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-            return $items; //return an array
-        }
+        
     }
 }
