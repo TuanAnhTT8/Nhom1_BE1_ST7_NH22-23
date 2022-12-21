@@ -1,4 +1,5 @@
 <?php
+//search
 if (isset($_GET['keyword'])) {
 	include "header.php";
 	$keyword = $_GET['keyword'];
@@ -22,30 +23,16 @@ if (isset($_GET['keyword'])) {
 					<!-- store products -->
 					<ul class="breadcrumb-tree">
 						<li class="active">Products:
-							<?php echo count($search) . " (result)"; ?>
+							<?php echo count($search) . " (result)";
+                            $totalrecords = count($search);
+                            ?>
+
 						</li>
 					</ul>
 					<!-- store products -->
 
 					<!-- store products -->
 					<div class="row">
-						<?php
-                        $limit = 9;
-                        $currentpage = isset($_GET['page']) ? $_GET['page'] : 1;
-                        $totalrecords = count($search);
-						$url = $_SERVER['PHP_SELF'] . "&keyword=" . $keyword  ;
-
-                        $get6ProductsSearch = $product->get6ProductsSearch($keyword, $currentpage, $limit);
-
-                        $totalpage = ceil($totalrecords / $limit);
-                        if ($currentpage > $totalpage) {
-	                        $currentpage = $totalpage;
-                        } else if ($currentpage < 1) {
-	                        $currentpage = 1;
-                        }
-
-                        $start = ($currentpage - 1) * $limit;
-                        ?>
 
 						<!-- <?php if ($totalrecords == 0) { ?> -->
 						<div class="col-md-12">
@@ -53,9 +40,9 @@ if (isset($_GET['keyword'])) {
 						</div>
 
 						<?php
-	                        
+
                         } else {
-	                        foreach ($get6ProductsSearch as $values): ?>
+	                        foreach ($search as $values): ?>
 						<!-- product -->
 						<div class="col-md-4 col-xs-6">
 							<div class="product">
@@ -71,7 +58,7 @@ if (isset($_GET['keyword'])) {
 											<?php echo $values['name'] ?>
 										</a></h3>
 									<h4 class="product-price">
-										<?php echo $values['price'] ?> VND
+										<?php echo number_format($values['price']) ?> VND
 									</h4>
 									<div class="product-rating">
 										<i class="fa fa-star"></i>
@@ -95,14 +82,6 @@ if (isset($_GET['keyword'])) {
 					</div>
 					<!-- /store products -->
 
-					<!-- store bottom filter -->
-					<div class="store-filter clearfix">
-						<ul class="store-pagination">
-							<?php(isset($_GET['page'])) ? $currentPage = $_GET['page'] : $currentPage = 1; ?>
-							<?php echo $product->paginate($currentpage, $url, $totalrecords, $limit) ?>
-						</ul>
-					</div>
-					<!-- /store bottom filter -->
 				</div>
 				<!-- /STORE -->
 			</div>

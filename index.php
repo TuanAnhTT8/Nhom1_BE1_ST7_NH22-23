@@ -62,24 +62,6 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
-					<!-- section title -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">New Products</h3>
-							<div class="section-nav">
-								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-									<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-									<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- /section title -->
-
-
 					<!-- Products tab & slick -->
 					<div class="col-md-12">
 						<div class="row">
@@ -118,7 +100,12 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<form class="form-submit" action="cart.php" method="">
+												<input type="hidden" class="url" name="url" value="<?php echo $_SERVER['SCRIPT_NAME'] ?>">
+												<input type="hidden" class="pid" name="iid" value="<?php echo $value['id'] ?>">
+												<button class="add-to-cart-btn addItemBtn" type="submit" name="submit"><i class="fa fa-shopping-cart"></i>add to cart </button>
+											</form>
+											
 											</div>
 										</div>
 										<!-- /product -->
