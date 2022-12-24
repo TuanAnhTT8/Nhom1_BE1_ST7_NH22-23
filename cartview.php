@@ -35,15 +35,12 @@ include "header.php";
 						<th>Price</th>
 						<th>Quantity</th>
 						<th>Total Price</th>
+						<th></th>
 					</tr>
-					<?php
+					<?php $getAllCart = $cart->getAllCart();
                     $grand_total = 0;
                     $stt = 1;
-                    $product->getAllProducts();
-                    foreach ($product as $values):
-	                    $id = $value["id"];
-	                    if (isset($_SESSION["cart"][$id])):
-		                    $qty = $_SESSION["cart"][$id];
+                    foreach ($getAllCart as $values):
                     ?>
 					<tr>
 
@@ -53,35 +50,30 @@ include "header.php";
 						<input type="hidden" class="iid" value="<?php echo $values['id'] ?>">
 						<td>
 							<div class="cart-info">
-								<img src="./img/<?php echo $values['img'] ?>" alt="">
+								<img src="./img/<?php echo $values['product_img'] ?>" >
 
 							</div>
 						</td>
 						<td>
-							<?php echo $values['name'] ?>
+							<?php echo $values['product_name'] ?>
 						</td>
 						<td>
 							<div>
-								<small>$
-									<?php echo number_format($values['price']) ?>
+								<small>
+									<?php echo number_format($values['product_price']) ?> VND
 								</small>
 
 							</div>
 						</td>
-						<input type="hidden" class="pprice" value="<?php echo $values['price'] ?>">
-						<td><input type="number" min='1' class="form-control itemQty"
-								value="<?php echo $values['qty'] ?>" style="width: 60px;"
-								oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : 1">
-						</td>
-						<td>$
-							<?php echo number_format($values['total_price']) ?>
-						</td>
-						<td><a href="cart.php?remove=<?php echo $values['id'] ?>"
+						<td><?php echo $values['qty'] ?></td>
+						<td><?php $total_price = $values['product_price'] * $values['qty'];
+	                    echo number_format($total_price) ?> VND </td>
+						<td><a href="cart.php?del&id=<?php echo $values['id'] ?>"
 								onclick="return confirm('Are you sure want to remove this item?');"><button
 									class="btn btn-danger mx-2">Remove</button></a></td>
 					</tr>
-					<?php $grand_total += $values['total_price']; ?>
-					<?php endif; endforeach; ?>
+					<?php $grand_total += ($total_price); ?>
+					<?php endforeach; ?>
 				</table>
 
 			</div>
@@ -92,8 +84,7 @@ include "header.php";
 					</tr>
 					<tr>
 						<td>Amount payable:</td>
-						<td> $
-							<?php echo number_format($grand_total); ?>
+						<td> <?php echo number_format($grand_total); ?> VND
 						</td>
 					</tr>
 
@@ -104,7 +95,8 @@ include "header.php";
                         if
                         ($grand_total > 1) {
 	                        if (isset($_SESSION['username'])) {
-		                        echo 'href="checkout.php"';
+		                        //nếu đã login thì chuyển đến trang thanh toán
+                        		echo 'href="#"';
 	                        } else {
 		                        echo 'href="login.php"';
 	                        }

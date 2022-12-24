@@ -83,30 +83,19 @@
                         <div class="products-slick" data-nav="#slick-nav-1">
 
                             <?php
-                            $get5ProductByType = $product->get5ProductByType($getProductById[0]['type_id']);
+                            $get5ProductByType = $type->get5ProductByType($getProductById[0]['type_id']);
                             foreach ($get5ProductByType as $value) :
                             ?>
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                        <img src="./img/<?php echo $value['image'] ?>"  width="250" height="200" alt="">
                                     </div>
                                     <div class="product-body">
 
                                         <h3 class="product-name"><a href="product_detail.php?id=<?php echo $value['id'] ?>"><?php echo substr($value['name'], 0, 20) ?>...</a></h3>
                                         <h4 class="product-price"><?php echo number_format($value["price"]) ?> VND</h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
+                                        
                                     </div>
                                     <div class="add-to-cart">
                                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
@@ -147,29 +136,18 @@
                         <div class="products-slick" data-nav="#slick-nav-2">
 
                             <?php
-                            $get5ProductByType = $product->get5ProductByType($getProductById[0]['manu_id']);
+                            $get5ProductByType = $type->get5ProductByType($getProductById[0]['manu_id']);
                             foreach ($get5ProductByType as $value) :
                             ?>
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                        <img src="./img/<?php echo $value['image'] ?>"  width="250" height="200" alt="">
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a href="product_detail.php?id=<?php echo $value['id'] ?>"><?php echo substr($value['name'], 0, 20) ?>...</a></h3>
                                         <h4 class="product-price"><?php echo number_format($value["price"]) ?> VND</h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
+                                        
                                     </div>
                                     <div class="add-to-cart">
                                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>

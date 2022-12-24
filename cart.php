@@ -1,20 +1,46 @@
 <?php
-session_start();
+require "config.php";
+require "model/db.php";
+require "model/product.php";
+require "model/manufacture.php";
+require "model/protype.php";
+require "model/cart.php";
+
+$cart = new Cart;
+$product = new Product;
 
 //Them vao gio hang
-if(isset($_GET['iid'])){
-	$id = $_GET['iid'];
-    $url = 'http://localhost' . $_GET['url'];
-    $pqty = 0;
+if (isset($_GET['cid'])) {
+	$cid = $_GET['cid'];
+	$cname = $_GET['cname'];
+	$cprice = $_GET['cprice'];
+	$cimg = $_GET['cimg'];
+	$url = 'http://localhost' . $_GET['url'];
+	$cqty;
 
-	if(isset($_SESSION["cart"][$id])){
-		$_SESSION["cart"][$id]++;
+	$check = $cart->getIdProductCart($cid);
+
+	if(!$check){
+		$cqty = 1;
+		$cart->insertProductToCart($cid, $cname, $cprice, $cimg, $cqty);
 	}else{
-		$_SESSION["cart"][$id] = 1;
+		$productcart = $cart->getIdProductCart($cid);
+
+		$uqty = $productcart[0]['qty']++;
+
+		$cart->editQtyProductInCart($cid, $uqty);
+		
 	}
+	// var_dump($check);
+	header("location: $url");
+	exit();
+  }
 
-	$qty = $_SESSION["cart"][$id];
+//Xoa san pham khoi gio hang
+if(isset($_GET['del'])){
+	$id = $_GET['id'];
 
-    // var_dump($_SESSION['cart']);
-    header("location: $url");
+	$cart->delProductInCart($id);
+
+	header("location: cartview.php");
 }

@@ -3,7 +3,8 @@
 
 <head>
     <title>form</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style type="text/css">
         .container {
             margin-top: 8%;
@@ -26,6 +27,11 @@
 
 <body>
     <div class="container">
+        <div class="col">
+            <a style="text-decoration:none" href="index.php">
+                <h3 class="text-right"> X </h3>
+            </a>
+        </div>
         <h2>Registration Form</h2>
         <form action="check-register.php" method="post">
             <div class="form-group">
@@ -35,7 +41,8 @@
 
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" class="form-control" name="phone">
+                <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" class="form-control"
+                    name="phone">
             </div>
             <div class="form-group">
                 <label for="Email1">Email address</label>
@@ -47,11 +54,11 @@
             </div>
             <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control"  name="password">
+                <input type="password" class="form-control" name="password">
             </div>
             <div class="form-group">
                 <label for="Password">Confirm Password</label>
-                <input type="password" class="form-control"  name="confpassword">
+                <input type="password" class="form-control" name="confpassword">
             </div>
             <button type="submit" class="btn btn-primary" name="btn_submit">Sign up</button>
         </form>
