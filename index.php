@@ -227,16 +227,16 @@
 										<img src="./img/<?php echo $value['image'] ?>" alt="">
 										<div class="product-label">
 											<span class="sale">-30%</span>
-											<span class="new">NEW</span>
 										</div>
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
 										<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
 										<h4 class="product-price"><?php echo number_format($value["price"]) ?> VND
-											<br><del class="product-old-price"><?php echo number_format(($value["price"]) + 2000000) ?> VND</del>
+											<br><del class="product-old-price"><?php echo number_format(($value["price"]) + (($value["price"])*0.3)) ?> VND</del>
 										</h4>
 									</div>
+									<!-- <?php if (isset($_SESSION['name'])){ ?> -->
 									<div class="add-to-cart">
 										<form class="form-submit" action="cart.php" method="">
 											<input type="hidden" class="url" name="url"
@@ -253,6 +253,9 @@
 													class="fa fa-shopping-cart"></i>add to cart</button>
 										</form>
 									</div>
+									<!-- <?php } else {
+		                                // header("location: warninglogin.php");
+									 }?> -->
 								</div>
 								<?php endforeach; ?>
 								<!-- /product -->

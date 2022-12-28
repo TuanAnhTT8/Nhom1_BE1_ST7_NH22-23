@@ -75,10 +75,10 @@ $getAllType = $type->getAllProtype();
 				</ul>
 				<!-- LOGIN -->
 				<ul class="header-links pull-right">
-					<?php if (isset($_SESSION["username"])) { ?>
+					<?php if (isset($_SESSION["name"])) { ?>
 
 					<li><a href="#"><i class="fa fa-user-o"></i>
-							<?php echo $_SESSION["username"] ?>
+							<?php echo $_SESSION["name"] ?>
 						</a></li>
 					<li><a href="logout.php">Log out</a></li>
 

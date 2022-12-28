@@ -14,22 +14,22 @@ if (isset($_POST["btn_submit"])) {
     $password = $_POST["password"];
     $confpassword = $_POST["confpassword"];
 
-    // $checkEmail = $user->checkEmailExists($email);
-    // $checkUsername = $user->checkUsernameExists($username);
+    $checkEmail = $user->checkEmailExists($email);
+    $checkUsername = $user->checkUsernameExists($username);
 
-    // if ($checkEmail) {
-    //     alert("Please enter");
-    //     //header("location:index.php");
-    // } elseif($checkUsername){
-    //     // alert('Login failed');
-    //     header("location:login.php");
-    // }elseif($password != $confpassword){
-    //     alert('Password wrong !!');
-    //     header("location:login.php");
-    // }else{
+    if ($checkEmail) {
+        alert("Please enter");
+        //header("location:index.php");
+    } elseif($checkUsername){
+        // alert('Login failed');
+        header("location:login.php");
+    }elseif($password != $confpassword){
+        alert('Password wrong !!');
+        header("location:login.php");
+    }else{
 
       
-    // }
+    }
     $user->insertUser($name, $username, $password, $phone, $email);
 
 }
