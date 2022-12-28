@@ -1,4 +1,6 @@
-<?php include "header.php"; ?>
+<?php
+include "header.php";
+?>
 
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
@@ -24,18 +26,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 col-xs-6">
-			<div style="display: <?php if (isset($_SESSION['showAlert'])) {
-										echo $_SESSION['showAlert'];
-									} else {
-										echo 'none';
-									}
-									unset($_SESSION['showAlert']); ?>;" class="alert alert-success alert-dismissible mt-3">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<strong><?php if (isset($_SESSION['message'])) {
-							echo $_SESSION['message'];
-						}
-						unset($_SESSION['showAlert']); ?></strong>
-			</div>
 			<div class="cart-page">
 				<table class="table-striped">
 					<tr>
@@ -45,40 +35,44 @@
 						<th>Price</th>
 						<th>Quantity</th>
 						<th>Total Price</th>
-						<!-- <th>
-							<a href="action.php?clear=all" class="badge badge-danger p-4" onclick="return confirm('Are you sure want to clear your cart?');"> Clear Cart</a>
-						</th> -->
+						<th></th>
 					</tr>
 					<?php $getAllCart = $cart->getAllCart();
-					$grand_total = 0;
-					$stt = 1;
-					foreach ($getAllCart as $values) :
-					?>
-						<tr>
+                    $grand_total = 0;
+                    $stt = 1;
+                    foreach ($getAllCart as $values):
+                    ?>
+					<tr>
 
-							<td><?php echo $stt++ ?></td>
-							<input type="hidden" class="pid" value="<?php echo $values['id'] ?>">
-							<td>
-								<div class="cart-info">
-									<img src="./img/<?php echo $values['product_img'] ?>" alt="">
+						<td>
+							<?php echo $stt++ ?>
+						</td>
+						<input type="hidden" class="iid" value="<?php echo $values['id'] ?>">
+						<td>
+							<div class="cart-info">
+								<img src="./img/<?php echo $values['product_img'] ?>" >
 
-								</div>
-							</td>
-							<td>
-								<?php echo $values['product_name'] ?>
-							</td>
-							<td>
-								<div>
-									<small>$<?php echo number_format($values['product_price']) ?></small>
+							</div>
+						</td>
+						<td>
+							<?php echo $values['product_name'] ?>
+						</td>
+						<td>
+							<div>
+								<small>
+									<?php echo number_format($values['product_price']) ?> VND
+								</small>
 
-								</div>
-							</td>
-							<input type="hidden" class="pprice" value="<?php echo $values['product_price'] ?>">
-							<td><input type="number" min='1' class="form-control itemQty" value="<?php echo $values['qty'] ?>" style="width: 60px;" oninput="this.value = !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : 1"></td>
-							<td>$<?php echo number_format($values['total_price']) ?></td>
-							<td><a href="action.php?remove=<?php echo $values['id'] ?>" onclick="return confirm('Are you sure want to remove this item?');"><button class="btn btn-danger mx-2">Remove</button></a></td>
-						</tr>
-						<?php $grand_total += $values['total_price']; ?>
+							</div>
+						</td>
+						<td><?php echo $values['qty'] ?></td>
+						<td><?php $total_price = $values['product_price'] * $values['qty'];
+	                    echo number_format($total_price) ?> VND </td>
+						<td><a href="cart.php?del&id=<?php echo $values['id'] ?>"
+								onclick="return confirm('Are you sure want to remove this item?');"><button
+									class="btn btn-danger mx-2">Remove</button></a></td>
+					</tr>
+					<?php $grand_total += ($total_price); ?>
 					<?php endforeach; ?>
 				</table>
 
@@ -90,23 +84,25 @@
 					</tr>
 					<tr>
 						<td>Amount payable:</td>
-						<td> $<?php echo number_format($grand_total); ?></td>
+						<td> <?php echo number_format($grand_total); ?> VND
+						</td>
 					</tr>
 
 					<tr>
-						<td><a href="index.php" class="btn btn-success"><i class="fa fa-shopping-cart"></i> Continue Shopping </a></td>
-						<td><a class="btn btn-danger mx-2" <?php
-															//nếu có username thì checkout ngược lại register 
-															if ($grand_total > 1) {
-																if (isset($_SESSION['username'])) {
-																	echo 'href="checkout.php"';
-																} else {
-																	echo 'href="login.php"';
-																}
-															} else {
-																echo "disabled";
-															}
-															?>>Check out</a></td>
+						<td><a href="index.php" class="btn btn-success"><i class="fa fa-shopping-cart"></i> Continue
+								Shopping </a></td>
+						<td><a class="btn btn-danger mx-2" <?php //nếu có username thì checkout ngược lại register 
+                        if
+                        ($grand_total > 1) {
+	                        if (isset($_SESSION['username'])) {
+		                        //nếu đã login thì chuyển đến trang thanh toán
+                        		echo 'href="#"';
+	                        } else {
+		                        echo 'href="login.php"';
+	                        }
+                        } else {
+	                        echo "disabled";
+                        } ?>>Check out</a></td>
 					</tr>
 				</table>
 			</div>

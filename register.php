@@ -26,6 +26,11 @@
 
 <body>
     <div class="container">
+        <div class="col">
+            <a style="text-decoration:none" href="index.php">
+                <h3 class="text-right"> X </h3>
+            </a>
+        </div>
         <h2>Registration Form</h2>
         <form action="check-register.php" method="post">
             <div class="form-group">

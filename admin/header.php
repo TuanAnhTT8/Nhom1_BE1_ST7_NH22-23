@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin'])) {
+  header("location: http://localhost/SG_Project_BE1/login.php");
+}
 	require "config.php";
 	require "model/db.php";
 	require "model/product.php";

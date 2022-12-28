@@ -26,14 +26,11 @@ class User extends Db
     }
     public function checkRegister($name,$phone,$email,$username,$password){
         $sql = self::$connection->prepare("INSERT INTO `user`(`name`, `phone`, `email`, `username`, `password`) VALUES (?,?,?,?,?)");
-        //$password = md5($password);
         $sql->bind_param("sssss",$name,$phone,$email,$username,$password);
         return $sql->execute();
-
-        
     }
     public function checkEmailExists($email){
-        $sql = self::$connection->prepare("SELECT `id` FROM user 
+        $sql = self::$connection->prepare("SELECT `id_user` FROM user 
         WHERE `email` = ?");
         $sql->bind_param("s", $email);
         $sql->execute();
@@ -47,7 +44,7 @@ class User extends Db
         }
     }
     public function checkUsernameExists($username){
-        $sql = self::$connection->prepare("SELECT `id` FROM user 
+        $sql = self::$connection->prepare("SELECT `id_user` FROM user 
         WHERE `username` = ?");
         $sql->bind_param("s", $username);
         $sql->execute();
