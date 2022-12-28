@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 18, 2022 at 08:47 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th12 27, 2022 lúc 10:06 AM
+-- Phiên bản máy phục vụ: 5.7.36
+-- Phiên bản PHP: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,39 +18,48 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nhom1`
+-- Cơ sở dữ liệu: `nhom1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `product_price` int(11) NOT NULL,
   `product_img` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `qty` int(10) NOT NULL,
-  `total_price` int(12) NOT NULL,
-  `product_code` varchar(11) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `product_name`, `product_price`, `product_img`, `qty`) VALUES
+(1, 'IPhone 12 64GB', 20990000, 'iphone-12-do-1-1-org.jpg', 3),
+(16, 'Laptop Dell Vostro 3400 i5', 18890000, 'dell-vostro-3400-i5-70253900-1.jpg', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manufacture`
+-- Cấu trúc bảng cho bảng `manufacture`
 --
 
-CREATE TABLE `manufacture` (
-  `manu_id` int(11) NOT NULL,
-  `manu_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `manufacture`;
+CREATE TABLE IF NOT EXISTS `manufacture` (
+  `manu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `manu_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`manu_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `manufacture`
+-- Đang đổ dữ liệu cho bảng `manufacture`
 --
 
 INSERT INTO `manufacture` (`manu_id`, `manu_name`) VALUES
@@ -63,23 +72,25 @@ INSERT INTO `manufacture` (`manu_id`, `manu_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Cấu trúc bảng cho bảng `products`
 --
 
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `manu_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `price` int(11) DEFAULT NULL,
   `image` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
   `feature` tinyint(4) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `image`, `description`, `feature`, `created_at`) VALUES
@@ -107,120 +118,55 @@ INSERT INTO `products` (`id`, `name`, `manu_id`, `type_id`, `price`, `image`, `d
 (22, 'Xiaomi Watch S1 46.5mm ', 5, 5, 2390000, 'xiaomi-watch-s1-1-1.jpg', 'Đồng hồ thông minh Mi Watch này mang phong cách trẻ trung, cá tính và đậm chất thể thao. Đồng hồ được trang bị công nghệ màn hình AMOLED với kích thước 1.39 inch cùng độ phân giải 454 x 454 pixels và độ sáng lên đến 450 nits giúp người dùng có thể quan sát thông tin rõ nét, chất lượng. Bên cạnh đó, đồng hồ còn được trang bị mặt kính cường lực Gorilla Glass 3 hạn chế trầy xước và tăng độ bền cho thiết bị. ', 1, '2022-10-30 13:16:13'),
 (23, 'Mi Band 6', 5, 5, 949000, 'mi-band-6-1-2-org.jpg', 'Vòng đeo tay thông minh Mi Band 6 là phiên bản đáng mong đợi của nhà Xiaomi với thiết kế màn hình tràn viền cho bạn góc nhìn tốt hơn. Mặt kính cường lực chống trầy xước tốt cùng dây đeo cao su với thiết kế ôm trọn cổ tay, không thấm nước khi đeo, mang lại cho bạn cảm giác dễ chịu cả ngày dài.', 1, '2022-10-30 13:16:13'),
 (24, 'Tai nghe Bluetooth True Wireless Sony WF-C500', 4, 4, 2290000, 'bluetooth-true-wireless-sony-wf-c500-trang-2.jpg', 'Tai nghe Bluetooth True Wireless Sony WF-C500 được thiết kế nhỏ gọn, bo tròn các góc cạnh để vừa khớp với đôi tai của bạn cho cảm giác dễ chịu khi đeo. Bạn có thể tùy thích lựa chọn chiếc tai nghe phù hợp cho phong cách, sở thích của bản thân với các màu trắng, đen, cam, xanh ngọc.', 1, '2022-10-30 13:16:13'),
-(25, 'Samsung Galaxy Book Flex', 2, 1, 31550000, 'galaxy-book-flex2-alpha-4_800x450.jpg\r\n', 'Laptop Samsung Galaxy Book Flex là chiếc máy tính xách tay chạy hệ điều hành Windows 10 Home, tốc độ xung nhịp 3.7GHz giúp máy chạy mượt mà và đa nhiệm. Laptop được trang bị màn hình kích thước 13.3\" cùng công nghệ IPS và độ phân giải 1920 x 1080pixels đem đến hình ảnh hiện thị sắc nét và chân thực.Laptop Samsung Galaxy Book Flex có trọng lượng chỉ 1.2kg thuận tiện mang theo đi làm mỗi ngày.', 1, '2022-10-30 13:16:13');
+(25, 'Samsung Galaxy Book Flex', 2, 1, 31550000, 'galaxy-book-flex2-alpha-4_800x450.jpg\r\n', '', 0, '2022-10-30 13:16:13');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `protypes`
+-- Cấu trúc bảng cho bảng `protypes`
 --
 
-CREATE TABLE `protypes` (
-  `type_id` int(11) NOT NULL,
-  `type_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `protypes`;
+CREATE TABLE IF NOT EXISTS `protypes` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `protypes`
+-- Đang đổ dữ liệu cho bảng `protypes`
 --
 
 INSERT INTO `protypes` (`type_id`, `type_name`) VALUES
 (1, 'Laptop'),
 (2, 'Smartphone'),
-(3, 'Camera'),
 (4, 'Earphone'),
 (5, 'Smartwatch');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `username` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(150) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `password` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `role` int(1) NOT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `user`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `phone`, `email`, `username`, `password`) VALUES
-(1, 'Minh', NULL, NULL, 'admin', '123654'),
-(2, 'Tuan Anh', '0123456789', 'tuanh@gmail.com', 'user', '123456');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `manufacture`
---
-ALTER TABLE `manufacture`
-  ADD PRIMARY KEY (`manu_id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `protypes`
---
-ALTER TABLE `protypes`
-  ADD PRIMARY KEY (`type_id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `manufacture`
---
-ALTER TABLE `manufacture`
-  MODIFY `manu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `protypes`
---
-ALTER TABLE `protypes`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+INSERT INTO `user` (`id_user`, `name`, `username`, `password`, `phone`, `email`, `role`) VALUES
+(1, 'Minh', 'admin', '123654', '', '', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

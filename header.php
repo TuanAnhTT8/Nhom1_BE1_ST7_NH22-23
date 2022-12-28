@@ -6,18 +6,17 @@ require "model/manufacture.php";
 require "model/protype.php";
 require "model/cart.php";
 require "model/user.php";
-// require "model/order.php";
 
 $product = new Product;
 $manu = new Manufacture;
-$protype = new Protype;
+$type = new Protype;
 $cart = new Cart;
 $user = new User;
 
 $get5NewestProduct = $product->get5NewestProducts();
 $getAllProducts = $product->getAllProducts();
 $getAllManu = $manu->getAllManufactures();
-$getAllProtype = $protype->getAllProtype();
+$getAllType = $type->getAllProtype();
 
 
 ?>
@@ -50,8 +49,8 @@ $getAllProtype = $protype->getAllProtype();
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	<!-- <link rel="stylesheet" href="css/Cartview.css">
-	<link rel="stylesheet" href="css/loading.css"> -->
+	<link rel="stylesheet" href="css/cartview.css">
+	<link rel="stylesheet" href="css/loading.css">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,13 +70,14 @@ $getAllProtype = $protype->getAllProtype();
 				<ul class="header-links pull-left">
 					<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
 					<li><a href="#"><i class="fa fa-envelope-o"></i> ElectroShop@email.com</a></li>
-					<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+					<li><a href="https://www.google.com/maps/place/1734 Stonecoal Road, Kermit,Virginia"><i
+								class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 				</ul>
 				<!-- LOGIN -->
 				<ul class="header-links pull-right">
 					<?php if (isset($_SESSION["username"])) { ?>
 
-					<li><a href="viewaccount.php"><i class="fa fa-user-o"></i>
+					<li><a href="#"><i class="fa fa-user-o"></i>
 							<?php echo $_SESSION["username"] ?>
 						</a></li>
 					<li><a href="logout.php">Log out</a></li>
@@ -112,10 +112,8 @@ $getAllProtype = $protype->getAllProtype();
 					<div class="col-md-6">
 						<div class="header-search">
 							<form method="get" action="result.php">
-								<input class="input-select" placeholder="Search here" pattern="^[a-zA-Z0-9]+$"
-									name="keyword" value="<?php if (isset($_GET['keyword']))
+								<input class="input-select" placeholder="Search here" name="keyword" value="<?php if (isset($_GET['keyword']))
 	                                echo $_GET['keyword'] ?>">
-								<!-- <input type="hidden" value="default" name="sort"> -->
 								<button type="submit" class="search-btn">Search</button>
 							</form>
 						</div>
@@ -125,38 +123,28 @@ $getAllProtype = $protype->getAllProtype();
 					<!-- ACCOUNT -->
 					<div class="col-md-3 clearfix">
 						<div class="header-ctn">
-
 							<!-- Cart -->
-							<?php if (isset($_SESSION["username"])): ?>
 							<div class="dropdown">
 								<a href="cartview.php">
 									<i class="fa fa-shopping-cart"></i>
 									<span>Your Cart</span>
-									<div class="qty" id="cart-item"></div>
+									<div class="qty" id="cart-item"><?php echo count($cart->getAllCart()); ?></div>
 								</a>
 							</div>
-							<?php endif; ?>
 							<!-- /Cart -->
 
-							<!-- Menu Toogle -->
-							<div class="menu-toggle">
-								<a href="#">
-									<i class="fa fa-bars"></i>
-									<span>Menu</span>
-								</a>
-							</div>
-							<!-- /Menu Toogle -->
 						</div>
 					</div>
 					<!-- /ACCOUNT -->
 				</div>
-				<!-- row -->
 			</div>
-			<!-- container -->
+			<!-- row -->
 		</div>
+		<!-- container -->
 		<!-- /MAIN HEADER -->
 	</header>
 	<!-- /HEADER -->
+
 	<!-- NAVIGATION -->
 	<nav id="navigation">
 		<!-- container -->
@@ -165,11 +153,23 @@ $getAllProtype = $protype->getAllProtype();
 			<div id="responsive-nav">
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav">
-					<li class="active"><a href="index.php">Home</a></li>
-					<li><a href="product-hotdeal.php">Hot Deals</a></li>
-					<li><a href="product-laptop.php">Laptops</a></li>
-					<li><a href="product-smartphone.php">Smartphones</a></li>
-					<li><a href="product-headphone.php">HeadPhones</a></li>
+					<?php
+                    $getAllManu = $manu->getAllManufactures();
+                    $getID = 0;
+                    if (isset($_GET['manu_id'])) {
+	                    $getID = $_GET['manu_id'];
+                    }
+                    ?>
+					<li class="<?php if ($getID == 0)
+	                    echo "active" ?>"><a href="index.php">Home</a></li>
+					<?php
+                    foreach ($getAllManu as $value):
+                    ?>
+					<li class="<?php if ($getID == $value['manu_id'])
+		                    echo "active" ?>"><a href="products.php?manu_id=<?php echo $value['manu_id'] ?>">
+							<?php echo $value['manu_name'] ?>
+						</a></li>
+					<?php endforeach; ?>
 				</ul>
 				<!-- /NAV -->
 			</div>

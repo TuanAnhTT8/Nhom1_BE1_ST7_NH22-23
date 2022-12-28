@@ -16,7 +16,6 @@ if (isset($_POST["btn_submit"])) {
         $_SESSION["username"] = $username;
         header("location:index.php");
     } else {
-        // alert('Login failed');
         header("location:login.php");
     }
 }

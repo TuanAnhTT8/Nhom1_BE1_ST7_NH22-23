@@ -26,6 +26,6 @@ if(isset($_POST['name'])){
     $target_file = $target_dir . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
 
-    var_dump($_FILES);
+    // var_dump($_FILES);
     header('location:product.php');
 }
