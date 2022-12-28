@@ -41,22 +41,11 @@ class User extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
-    public function checkRegister($name, $phone, $email, $username, $password)
-    {
-        $sql = self::$connection->prepare("SELECT * FROM user 
-        WHERE `username` = ? AND `password` = ?");
+    public function checkRegister($name,$phone,$email,$username,$password){
+        $sql = self::$connection->prepare("INSERT INTO `user`(`name`, `phone`, `email`, `username`, `password`) VALUES (?,?,?,?,?)");
         //$password = md5($password);
-        $sql->bind_param("ss", $username, $password);
-        $sql->execute(); //return an object
-        $items = array();
-        $items = $sql->get_result()->num_rows;
-        if ($items == 1) {
-            return true;
-        } else {
-            return false;
-        }
-
-
+        $sql->bind_param("sssss",$name,$phone,$email,$username,$password);
+        return $sql->execute();
     }
     public function checkEmailExists($email)
     {
