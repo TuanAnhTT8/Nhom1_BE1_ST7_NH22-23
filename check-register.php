@@ -26,8 +26,11 @@ if (isset($_POST["btn_submit"])) {
     elseif($password != $confpassword){
         alert("Password and ConfPassword are not the same");       
     }
+    else{
+        $user->checkRegister($name, $phone, $email, $username, $password);
+        $user->checkLogin($username,$password);
+    }
 }
 function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
-    //header("Location:register.php");
 }

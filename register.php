@@ -34,7 +34,7 @@
             </div>
 
             <div class="form-group">
-                <label for="phone">Phone Number</label>
+                <label for="phone">Phone Number</label> 
                 <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" class="form-control" name="phone" required>
             </div>
             <div class="form-group">
