@@ -14,24 +14,6 @@ if (isset($_POST["btn_submit"])) {
     $password = $_POST["password"];
     $confpassword = $_POST["confpassword"];
 
-    // $checkEmail = $user->checkEmailExists($email);
-    // $checkUsername = $user->checkUsernameExists($username);
-
-    // if ($checkEmail) {
-    //     alert("Please enter");
-    //     //header("location:index.php");
-    // } elseif($checkUsername){
-    //     // alert('Login failed');
-    //     header("location:login.php");
-    // }elseif($password != $confpassword){
-    //     alert('Password wrong !!');
-    //     header("location:login.php");
-    // }else{
-
-      
-    // }
-    $user->insertUser($name, $username, $password, $phone, $email);
-
     $checkEmail = $user->checkEmailExists($email);
     $checkUsername = $user->checkUsernameExists($username);
 
@@ -42,11 +24,11 @@ if (isset($_POST["btn_submit"])) {
         alert("This username is already in use");       
     }
     elseif($password != $confpassword){
-        alert("Password and ConfPassword are not the same");       
+        alert("Password and Confirm Password are not the same");       
     }
     else{
         $user->checkRegister($name, $phone, $email, $username, $password);
-        $user->checkLogin($username,$password);
+        
     }
 }
 function alert($msg) {
