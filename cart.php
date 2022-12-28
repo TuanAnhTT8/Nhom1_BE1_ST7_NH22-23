@@ -26,12 +26,10 @@ if (isset($_GET['cid'])) {
 	}else{
 		$productcart = $cart->getIdProductCart($cid);
 
-		foreach($productcart as $value){
-			$uqty = $value['qty'];
-		}
-		$uqty++;
-		
+		$uqty = $productcart[0]['qty']+1;
+
 		$cart->editQtyProductInCart($cid, $uqty);
+		
 	}
 	header("location: $url");
   }

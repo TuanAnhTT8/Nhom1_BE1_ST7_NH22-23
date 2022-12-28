@@ -233,7 +233,7 @@
 										<p class="product-category">Category</p>
 										<h3 class="product-name"><a href="#"><?php echo $value['name'] ?></a></h3>
 										<h4 class="product-price"><?php echo number_format($value["price"]) ?> VND
-											<br><del class="product-old-price"><?php echo number_format(($value["price"]) + (($value["price"])*0.3)) ?> VND</del>
+											<br><del class="product-old-price"><?php echo number_format(($value["price"]) + 2000000) ?> VND</del>
 										</h4>
 									</div>
 									<!-- <?php if (isset($_SESSION['name'])){ ?> -->
